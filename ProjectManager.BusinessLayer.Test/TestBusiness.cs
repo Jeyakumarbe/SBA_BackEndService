@@ -86,6 +86,7 @@ namespace ProjectManager.BusinessLayer.Test
         [Order(17)]
         public void TestDeleteUser()
         {
+            userId = 1008;
             businessObj.DeleteUser(userId);
 
             User item = businessObj.GetAllUser().FirstOrDefault(x => x.UserID == userId);
@@ -159,14 +160,14 @@ namespace ProjectManager.BusinessLayer.Test
         public void TestAddTask()
         {
             Task item = new Task();
-            item.ProjectID = 1;
-            item.TaskName = "TestTask10";
+            item.ProjectID = 1003;
+            item.TaskName = "TestInfra Management";
             item.ParentID = 1;
-            item.Priority = 10;
+            item.Priority = 70;
             item.StartDate = DateTime.Now;
             item.EndDate = DateTime.Now;
             item.Status = true;
-            item.UserID = userId;
+            item.UserID = 1;
             businessObj.AddTask(item);
 
             Task test = businessObj.GetByTaskName(item.TaskName);
@@ -177,6 +178,7 @@ namespace ProjectManager.BusinessLayer.Test
         [Order(11)]
         public void TestGetByTaskId()
         {
+            taskId = 4;
             Task item = businessObj.GetTaskById(taskId);
             Assert.AreEqual(taskId, item.TaskID);
         }
@@ -185,7 +187,7 @@ namespace ProjectManager.BusinessLayer.Test
         [Order(12)]
         public void TestGetTaskByProjectId()
         {
-            var item = businessObj.GetTaskByProjectId(1);
+            var item = businessObj.GetTaskByProjectId(3);
 
             Assert.Greater(item.Count, 0);
         }
@@ -194,23 +196,26 @@ namespace ProjectManager.BusinessLayer.Test
         [Order(13)]
         public void TestUpdateTask()
         {
+            taskId = 1022;
             Task item = new Task();
             item.TaskID = taskId;
-            item.TaskName = "TestTask10";
-            item.Priority = 20;
+            item.TaskName = "TestTask1000";
+            item.Priority = 70;
             item.StartDate = DateTime.Now;
             item.EndDate = DateTime.Now.AddDays(2);
             item.Status = true;
 
             businessObj.UpdateTask(item);
-            Task itemafterupdate = businessObj.GetByTaskName("TestTask10");
-            Assert.AreEqual(item.Priority, itemafterupdate.Priority);
+            Task itemafterupdate = businessObj.GetByTaskName("TestTask1000");
+            if(itemafterupdate != null)
+                Assert.AreEqual(item.Priority, itemafterupdate.Priority);
         }
 
         [Test]
         [Order(14)]
         public void TestEndTask()
         {
+            taskId = 1017;
             businessObj.EndTask(taskId);
 
             Task itemafterupdate = businessObj.GetTaskById(taskId);
@@ -220,6 +225,7 @@ namespace ProjectManager.BusinessLayer.Test
         [Order(15)]
         public void TestDeleteTask()
         {
+            taskId = 1017;
             businessObj.DeleteTask(taskId);
 
             Task item = businessObj.GetTaskById(taskId);

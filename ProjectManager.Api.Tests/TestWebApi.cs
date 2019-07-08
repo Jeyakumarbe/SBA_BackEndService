@@ -12,7 +12,7 @@ using ProjectManager.Api.Service.Models;
 namespace ProjectManager.Api.Tests
 {
     [TestFixture]
-    public class TestWebApi
+    public class TestWebApi 
     {
         ProjectManagerController projectObj = null;
         int taskId = 0;
@@ -297,5 +297,16 @@ namespace ProjectManager.Api.Tests
             //Assert
             Assert.IsInstanceOf(typeof(BadRequestErrorMessageResult), actionResult);
         }
+        //protected virtual void Dispose(bool disposing)
+        //{
+        //    Dispose();
+        //}
+        //public void Dispose()
+        //{
+        //    // Dispose of unmanaged resources.
+        //    Dispose(true);
+        //    // Suppress finalization.
+        //    GC.SuppressFinalize(this);
+        //}
     }
 }
